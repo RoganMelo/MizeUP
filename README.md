@@ -1,2 +1,2 @@
 # MizeUP
-Studies Management System using ASPNET MVC, NHibernate and JQuery.
+Studies Management System using C#, ASPNET MVC, NHibernate and JQuery.
