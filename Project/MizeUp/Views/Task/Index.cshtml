@@ -1,0 +1,165 @@
+﻿@model IEnumerable<MizeUP.Models.TaskModel>
+
+@{
+    ViewBag.Title = Languages.Task;
+}
+
+<div class="container">
+    <div class="page-header">
+        <h2>
+            <strong>@Languages.Task</strong>
+        </h2>
+    </div>
+    <div>
+        <a href="@Url.Action("Create", "Task")" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i>&nbsp;@Languages.Add&nbsp;@Languages.Task</a>
+    </div><br>
+    @*<a href="#" id="btn-hide-table" data-btn-hide-table><i class="glyphicon glyphicon-chevron-right"></i>&nbsp;@Languages.Show&nbsp;@Languages.Content</a>*@
+    <table class="table table-bordered table-reponsive text-center" data-table>
+        <thead>
+            <tr>
+                <th>@Languages.Name</th>
+                <th>@Languages.Subjects</th>
+                <th>@Languages.DeliveryDate</th>
+                <th>@Languages.Status</th>
+                <th>@Languages.Grade</th>
+                <th>@Languages.Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var task in Model)
+                {
+                    <tr>
+                        <td class="vertical-align-middle">@task.Name</td>
+                        <td class="vertical-align-middle"><a href="#" class="tooltipDescription" title="@Languages.Description: @task.Description" style="text-decoration: none;">@task.Subject.Name</a></td>
+                        <td class="vertical-align-middle">@task.DeadLine</td>
+                        <td class="vertical-align-middle">
+                            @if (task.Status == '1')
+                            {
+                                @Languages.ToDo
+                            }
+                            else if (task.Status == '2')
+                            {
+                                @Languages.Doing
+                            }
+                            else
+                            {
+                                @Languages.Completed
+                            }
+                        </td>
+                        <td class="vertical-align-middle">
+                            @if (task.Grade != 0)
+                            {
+                                @task.Grade
+                            }
+                            else
+                            {
+                                <span>-</span>
+                            }
+                        </td>
+                        <td>
+                            <a href='@Url.Action("Edit", "Task", new { taskId = task.Id })' class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
+                            <a href="#" class="btn btn-danger" data-modal-delete="@task.Id"><i class="glyphicon glyphicon-trash"></i></a>
+                            <a href="#" class="btn btn-success btn-end-task" data-modal="@task.Id"><i class="glyphicon glyphicon-ok-circle"></i></a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="modal-grade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="margin-top: 80px">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4><strong>Finalizar @Languages.Task</strong></h4>
+                </div>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("InsertGrade", "Task"))
+                {
+                    <input type="hidden" id="idTask" name="idTask" />
+                    <div class="form-group">
+                        @Html.Label(Languages.Grade, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.TextBox("Grade", "", new { @class = "form-control" })
+                        </div>
+                        @Html.ValidationMessage("Grade")
+                    </div>
+                    <span class="text-danger" id="spanMsg"></span>
+                    <input type="hidden" name="taskId" id="taskId" value="">
+                    <div class="form-group">
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-success" id="btnSaveGrade">@Languages.Save</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<form id="content" hidden action="@Url.Action("Delete","Task")" method="POST">
+    <input type="hidden" id="modelId" name="modelId" />
+    <button class="btn btn-danger">Excluir</button>
+</form>
+
+
+@section Scripts{
+    <script>
+        var language = {
+            hide: '@Languages.Hide',
+            show: '@Languages.Show',
+            content: '@Languages.Content',
+
+            title: '@Languages.ConfirmOperation',
+            textBtnNot: '@Languages.Delete',
+            url: '@Url.Action("Delete","Task")'
+        }
+
+        $(".nav-tabs a").click(function () {
+            $(this).tab('show');
+        });
+
+        var btn = $("#btnSaveGrade");
+        var spanMsg = $("#spanMsg")
+        btn.attr("disabled", "disabled");
+        $("#Grade").keyup(function () {
+            var grade = +($(this).val());
+            if (grade > 0 && grade <= 10) {
+                btn.removeAttr("disabled");
+                spanMsg.html("");
+            } else {
+                btn.attr("disabled", "disabled");
+                spanMsg.html("Nota de 0 a 10");
+            }
+        });
+    </script>
+    <script>
+        $('.btn-end-task').click(function () {
+            var idTask = $(this).attr("data-modal");
+            $("#idTask").val(idTask);
+            $('#modal-grade').modal();
+        });
+    </script>
+    <script>
+        $(".tooltipDescription").tooltip({ placement: "bottom" });
+    </script>
+    <script type="text/javascript" src="~/Scripts/toggleTable.js"></script>
+    <script type="text/javascript" src="~/Scripts/modalDelete.js"></script>
+}

@@ -1,0 +1,190 @@
+﻿/*estilo menu*/
+.navbar {
+    border: none;
+    background: #3C599F;
+}
+
+.navbar-toggle {
+    color: white;
+    margin: 0px;
+    border-radius: 0px;
+    cursor: pointer;
+}
+
+    .navbar-toggle:hover {
+        background: white;
+        color: #3C599F;
+        text-decoration: none;
+    }
+
+#logo {
+    padding-right: 10px;
+    color: white;
+    font-family: Sansation; 
+    font-size: 25px;
+}
+
+#logo:hover {
+    background: #3C599F;
+}
+
+a {
+    transition: background-color linear 0.2s;
+    color: #fff;
+}
+
+    a:hover {
+        background: white;
+        color: #3C599F;
+    }
+
+    a:visited {
+        text-decoration: none;
+    }
+
+    a:focus {
+        text-decoration: none;
+        color: #3C599F;
+    }
+
+.dropdown-menu {
+    background: #3C599F;
+}
+
+    .dropdown-menu li a {
+        color: white;
+    }
+
+    .dropdown-menu li a:hover {
+        color: #3C599F;
+    }
+
+/*estilo do popover de login*/
+.popover {
+    background: #3C599F;
+    width: auto;
+}
+
+#popoverMobile:focus {
+    background: white;
+    color: #3C599F;
+}
+
+/*estilo do botão de menu*/
+.navbar-header button {
+    background: #616161;
+    border-color: #fff;
+    color: white;
+}
+
+    .navbar-header button:hover {
+        background: #3C599F;
+    }
+
+/*estilo do botão principal*/
+.btn-primary {
+    transition: background-color linear 0.2s;
+    border-color: white;
+    background: #616161;
+}
+
+    .btn-primary:hover {
+        border-color: white;
+        background: #3C599F;
+    }
+
+/*estilo do conteúdo principal*/
+main {
+    margin-top: 50px;
+    margin-bottom: 60px;
+}
+
+.fullscreen {
+    width: 100%;
+}
+
+.active {
+    background: #3C599F;
+}
+
+#ocultaTabela {
+    color: #616161;
+    text-decoration: none;
+}
+
+    #ocultaTabela:hover {
+        color: #3C599F;
+    }
+
+table {
+    border-color: white;
+    white-space: pre;
+    font-size: 12px;
+}
+
+th {
+    background: #3C599F;
+    color: white;
+    text-align: center;
+}
+
+.formCenter {
+    width: 50%;
+    margin: auto 25%;
+}
+
+form div {
+    margin: 10px 10px;
+}
+
+.divButtonSubmit {
+    margin-left: 10%;
+}
+
+/*estilo do rodapé*/
+.footer {
+    background: #3C599F;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-bottom: 0px;
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+    .footer a {
+        color: white;
+    }
+
+        .footer a:hover {
+            background: #3C599F;
+        }
+
+#filtroEscuro {
+    background: #000; 
+    top: 0px; 
+    padding: 0px; 
+    position: fixed;
+    left: 0px; 
+    width: 100%; 
+    height: 100%; 
+    opacity: 0.4; 
+    filter: alpha(opacity=80);
+    -moz-opacity: 0.5; 
+    z-index: 99999999999999999999;
+}
+
+#dvProgress {
+    text-align: center; 
+    vertical-align: middle; 
+    font-family: Verdana; 
+    font-weight: 700;
+    position: absolute; top: 40%; 
+    left: 50%; 
+    margin-left: -50px; 
+    font-size: small;
+}

@@ -1,0 +1,123 @@
+tabela geral:
+	
+	class="table table-bordered"
+
+imagem geral:
+	
+	class="img-thumbnail"
+
+botão geral:
+	
+	class="btn btn-primary"
+
+dropdown:
+	 
+	<div class="dropdown">
+  		<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+  		<span class="caret"></span></button>
+  		<ul class="dropdown-menu">
+    			<li><a href="#">HTML</a></li>
+    			<li><a href="#">CSS</a></li>
+    			<li><a href="#">JavaScript</a></li>
+  		</ul>
+	</div>
+
+tabs:
+
+	<ul class="nav nav-tabs">
+  		<li class="active"><a href="#">Home</a></li>
+  		<li><a href="#">Menu 1</a></li>
+  		<li><a href="#">Menu 2</a></li>
+  		<li><a href="#">Menu 3</a></li>
+	</ul>
+
+form:
+
+	<form role="form">
+  		<div class="form-group">
+    			<label for="email">Email address:</label>
+    			<input type="email" class="form-control" id="email">
+  		</div>
+  		<div class="form-group">
+    			<label for="pwd">Password:</label>
+    			<input type="password" class="form-control" id="pwd">
+  		</div>
+  		<div class="checkbox">
+    			<label><input type="checkbox"> Remember me</label>
+  		</div>
+  		<button type="submit" class="btn btn-default">Submit</button>
+	</form>
+
+input:
+
+	<div class="form-group">
+  		<label for="usr">Name:</label>
+  		<input type="text" class="form-control" id="usr">
+	</div>
+	<div class="form-group">
+  		<label for="pwd">Password:</label>
+  		<input type="password" class="form-control" id="pwd">
+	</div>
+
+textarea:
+
+	<div class="form-group">
+  		<label for="comment">Comment:</label>
+  		<textarea class="form-control" rows="5" id="comment"></textarea>
+	</div>
+
+checkboxes:
+
+	<div class="checkbox">
+  		<label><input type="checkbox" value="">Option 1</label>
+	</div>
+	<div class="checkbox">
+  		<label><input type="checkbox" value="">Option 2</label>
+	</div>
+	<div class="checkbox disabled">
+  		<label><input type="checkbox" value="" disabled>Option 3</label>
+	</div>
+
+radio buttons-default:
+
+	<div class="radio">
+  		<label><input type="radio" name="optradio">Option 1</label>
+	</div>
+	<div class="radio">
+  		<label><input type="radio" name="optradio">Option 2</label>
+	</div>
+	<div class="radio disabled">
+  		<label><input type="radio" name="optradio" disabled>Option 3</label>
+	</div>
+
+radio buttons-inline:
+
+	<label class="radio-inline"><input type="radio" name="optradio">Option 1</label>
+	<label class="radio-inline"><input type="radio" name="optradio">Option 2</label>
+	<label class="radio-inline"><input type="radio" name="optradio">Option 3</label>
+
+modal:
+
+	<!-- Trigger the modal with a button -->
+	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+	<!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+  		<div class="modal-dialog">
+
+    			<!-- Modal content-->
+    			<div class="modal-content">
+      				<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal">&times;</button>
+        				<h4 class="modal-title">Modal Header</h4>
+      				</div>
+      				<div class="modal-body">
+        				<p>Some text in the modal.</p>
+      				</div>
+      				<div class="modal-footer">
+        				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      				</div>
+    			</div>
+
+  		</div>
+	</div>

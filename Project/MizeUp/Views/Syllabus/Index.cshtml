@@ -1,0 +1,323 @@
+﻿@model MizeUP.Models.SyllabusModel
+
+@{
+    ViewBag.Title = Languages.Syllabus;
+    var account = Session["LoggedAccount"] as MizeUP.Models.StudentModel;
+}
+
+<div class="container">
+    <div class="page-header">
+        <h2>
+            <strong>@Languages.Syllabus</strong>
+        </h2>
+    </div>
+    @if (account.Syllabus != null)
+    {
+        if (ViewBag.primeiraColuna != null)
+        {
+            <div style="padding-bottom: 5% !important;">
+                <div class="page-header">
+                    <h4>
+                        <strong>@Languages.Sunday</strong>
+                    </h4>
+                </div>
+                <div>
+                    @for (int j = 0; j < ViewBag.primeiraColuna.Count; j++)
+                    {
+                        if (ViewBag.viewBagMatriz[j, 0] == "-")
+                        {
+                            <b>
+                                @Languages.Empty
+                            </b>
+                        }
+                        else
+                        {
+                            <div>
+                                <b>
+                                    <i class="glyphicon glyphicon-book"></i>
+                                    &nbsp;@ViewBag.viewBagMatriz[j, 0]
+                                </b>
+                            </div>
+                        }
+                    }
+                </div>
+                <hr />
+                <div class="page-header">
+                    <h4>
+                        <strong>@Languages.Monday</strong>
+                    </h4>
+                </div>
+                <div>
+                    @for (int j = 0; j < ViewBag.primeiraColuna.Count; j++)
+                    {
+                        if (ViewBag.viewBagMatriz[j, 1] == "-")
+                        {
+                            <b>
+                                @Languages.Empty
+                            </b>
+                        }
+                        <div>
+                            <b>
+                                <i class="glyphicon glyphicon-book"></i>
+                                &nbsp;@ViewBag.viewBagMatriz[j, 1]
+                            </b>
+                        </div>
+                    }
+                </div>
+                <hr />
+                <div class="page-header">
+                    <h4>
+                        <strong>@Languages.Tuesday</strong>
+                    </h4>
+                </div>
+                <div>
+                    @for (int j = 0; j < ViewBag.primeiraColuna.Count; j++)
+                    {
+                        if (ViewBag.viewBagMatriz[j, 2] == "-")
+                        {
+                            <b>
+                                @Languages.Empty
+                            </b>
+                        }
+                        else
+                        {
+                            <div>
+                                <b>
+                                    <i class="glyphicon glyphicon-book"></i>
+                                    &nbsp;@ViewBag.viewBagMatriz[j, 2]
+                                </b>
+                            </div>
+                        }
+                    }
+                </div>
+                <hr />
+                <div class="page-header">
+                    <h4>
+                        <strong>@Languages.Wednesday</strong>
+                    </h4>
+                </div>
+                <div>
+                    @for (int j = 0; j < ViewBag.primeiraColuna.Count; j++)
+                    {
+                        if (ViewBag.viewBagMatriz[j, 3] == "-")
+                        {
+                            <b>
+                                @Languages.Empty
+                            </b>
+                        }
+                        else
+                        {
+                            <div>
+                                <b>
+                                    <i class="glyphicon glyphicon-book"></i>
+                                    &nbsp;@ViewBag.viewBagMatriz[j, 3]
+                                </b>
+                            </div>
+                        }
+                    }
+                </div>
+                <hr />
+                <div class="page-header">
+                    <h4>
+                        <strong>@Languages.Thursday</strong>
+                    </h4>
+                </div>
+                <div>
+                    @for (int j = 0; j < ViewBag.primeiraColuna.Count; j++)
+                    {
+                        if (ViewBag.viewBagMatriz[j, 4] == "-")
+                        {
+                            <b>
+                                @Languages.Empty
+                            </b>
+                        }
+                        else
+                        {
+                            <div>
+                                <b>
+                                    <i class="glyphicon glyphicon-book"></i>
+                                    &nbsp;@ViewBag.viewBagMatriz[j, 4]
+                                </b>
+                            </div>
+                        }
+                    }
+                </div>
+                <hr />
+                <div class="page-header">
+                    <h4>
+                        <strong>@Languages.Friday</strong>
+                    </h4>
+                </div>
+                <div>
+                    @for (int j = 0; j < ViewBag.primeiraColuna.Count; j++)
+                    {
+                        if (ViewBag.viewBagMatriz[j, 5] == "-")
+                        {
+                            <b>
+                                @Languages.Empty
+                            </b>
+                        }
+                        else
+                        {
+                            <div>
+                                <b>
+                                    <i class="glyphicon glyphicon-book"></i>
+                                    &nbsp;@ViewBag.viewBagMatriz[j, 5]
+                                </b>
+                            </div>
+                        }
+                    }
+                </div>
+                <hr />
+                <div class="page-header">
+                    <h4>
+                        <strong>@Languages.Saturday</strong>
+                    </h4>
+                </div>
+                <div>
+                    @for (int j = 0; j < ViewBag.primeiraColuna.Count; j++)
+                    {
+                        if (ViewBag.viewBagMatriz[j, 6] == "-")
+                        {
+                            <b>
+                                @Languages.Empty
+                            </b>
+                        }
+                        else
+                        {
+                            <div>
+                                <b>
+                                    <i class="glyphicon glyphicon-book"></i>
+                                    &nbsp;@ViewBag.viewBagMatriz[j, 6]
+                                </b>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-horizontal" style="padding-bottom: 5% !important;">
+                @using (Html.BeginForm())
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(model => model.Name, htmlAttributes: new { autocomplete = "off", @class = "form-control" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger col-md-6" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                @Html.TextBoxFor(model => model.StartTime, htmlAttributes: new { @class = "form-control datepicker" })
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger col-md-6" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Availability, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            <div class="input-group clockpicker" data-placement="right" data-align="top" data-autoclose="true">
+                                @Html.TextBoxFor(model => model.Availability, "", htmlAttributes: new { @class = "form-control", @style = "background: none; z-index: 0;", @readonly = "true" })
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Availability, "", new { @class = "text-danger col-md-6" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Objective, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.DropDownListFor(model => model.Objective, (SelectList)ViewBag.Objectives, Languages.Choose, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Objective, "", new { @class = "text-danger col-md-6" })
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">@Languages.Timesheet</label>
+                        <br />
+                        <br />
+                        @*<a href="#" id="btn-hide-table" data-btn-hide-table><i class="glyphicon glyphicon-chevron-right"></i>&nbsp;@Languages.Show&nbsp;@Languages.Content</a>*@
+                        <table class="table table-bordered table-reponsive text-center" data-table>
+                            <thead>
+                                <tr>
+                                    <th>@Languages.Schedules/@Languages.Days</th>
+                                    <th>@Languages.Sunday</th>
+                                    <th>@Languages.Monday</th>
+                                    <th>@Languages.Tuesday</th>
+                                    <th>@Languages.Wednesday</th>
+                                    <th>@Languages.Thursday</th>
+                                    <th>@Languages.Friday</th>
+                                    <th>@Languages.Saturday</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.primeiraColuna != null)
+                                {
+                                    for (int j = 0; j < ViewBag.primeiraColuna.Count; j++)
+                                    {
+                                        <tr>
+                                            <th>@ViewBag.primeiraColuna[j]</th>
+                                            @for (int i = 0; i < 7; i++)
+                                            {
+                                                if (ViewBag.viewBagMatriz[j, i] == "-")
+                                                {
+                                                    <td>-</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>@ViewBag.viewBagMatriz[j, i]</td>
+                                                }
+                                            }
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <th>-- : --</th>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="form-group">
+                        <div class="pull-left">
+                            <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i>&nbsp;@Languages.Confirm</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    }
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+    <script>
+        $('.datepicker').datepicker();
+    </script>
+    <script src="~/Scripts/bootstrap-clockpicker.js"></script>
+    <script>
+        $('.clockpicker').clockpicker();
+    </script>
+    <script>
+        var language = {
+            hide: '@Languages.Hide',
+            show: '@Languages.Show',
+            content: '@Languages.Content',
+        }
+    </script>
+    <script type="text/javascript" src="~/Scripts/toggleTable.js"></script>
+}

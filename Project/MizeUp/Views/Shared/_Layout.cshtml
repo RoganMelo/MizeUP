@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+
+@Html.Partial("_Head")
+
+<body>
+    @Html.Partial("_Header")
+
+    <main>
+        @RenderBody()
+    </main>
+
+    @Html.Partial("_Footer")
+
+    @Html.Partial("_Load")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/scripts")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

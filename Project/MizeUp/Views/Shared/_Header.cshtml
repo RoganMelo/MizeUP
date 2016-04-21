@@ -1,0 +1,177 @@
+﻿@{
+    var account = Session["LoggedAccount"] as MizeUP.Models.StudentModel;
+}
+
+<header>
+    <h1 class="logo">
+        <a href="@Url.Action("Index", "Home")">
+            Mize<sup><strong style="font-family: myBoldFont;">UP</strong></sup>
+        </a>
+    </h1>
+    <a href="#" id="nav-expander" class="btn-menu menu">
+        <i class="glyphicon glyphicon-menu-hamburger"></i>
+    </a>
+
+    @if (account != null)
+    {
+        if ("admin@admin.com".Equals(account.Email))
+        {
+            <nav>
+                <ul class="list-unstyled main-menu">
+                    <li>
+                        <a href="@Url.Action("Index", "Home")">
+                            <i class="glyphicon glyphicon-home"></i>&nbsp;@Languages.Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Institution")">
+                            <i class="glyphicon glyphicon-book"></i>&nbsp;@Languages.EducationalInstitution
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Level")">
+                            <i class="glyphicon glyphicon-education"></i>&nbsp;@Languages.Level
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("About", "Home")">
+                            <i class="glyphicon glyphicon-briefcase"></i>&nbsp;@Languages.About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Contact", "Home")">
+                            <i class="glyphicon glyphicon-earphone"></i>&nbsp;@Languages.Contact
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <a href="#" id="btn-user" class="btn-menu login" data-toggle="dropdown">
+                <i class="glyphicon glyphicon-user"></i>
+            </a>
+            <ul class="dropdown-menu pull-right">
+                <li style="border-bottom: solid 2px white;">&nbsp;&nbsp;&nbsp;&nbsp;<strong>@account.Name&nbsp;@account.LastName</strong></li>
+                <li>
+                    <a href="@Url.Action("LogOut", "Account")">
+                        <i class="glyphicon glyphicon-log-out"></i>&nbsp;@Languages.Logout
+                    </a>
+                </li>
+            </ul>
+        }
+        else
+        {
+            <nav>
+                <ul class="list-unstyled main-menu">
+                    <li>
+                        <a href="@Url.Action("Index", "Home")">
+                            <i class="glyphicon glyphicon-home"></i>&nbsp;@Languages.Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="glyphicon glyphicon-book"></i>&nbsp;@Languages.Subjects
+                        </a>
+                        <ul class="list-unstyled">
+                            <li class="sub-nav">
+                                <a href="@Url.Action("Index", "Subject")">
+                                    <i class="glyphicon glyphicon-list"></i>&nbsp;@Languages.Show&nbsp;@Languages.Subjects
+                                </a>
+                            </li>
+                            <li class="sub-nav">
+                                <a href="@Url.Action("Index", "Task")">
+                                    <i class="glyphicon glyphicon-pushpin"></i>&nbsp;@Languages.Task
+                                </a>
+                            </li>
+                            @*<li class="sub-nav">
+                                <a href="@Url.Action("Index", "Grade")">
+                                    <i class="glyphicon glyphicon-stats"></i>&nbsp;@Languages.Grades
+                                </a>
+                            </li>*@
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Timesheet", "Subject")">
+                            <i class="glyphicon glyphicon-calendar"></i>&nbsp;@Languages.Timesheet
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Syllabus")">
+                            <i class="glyphicon glyphicon-education"></i>&nbsp;@Languages.Syllabus
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("About", "Home")">
+                            <i class="glyphicon glyphicon-briefcase"></i>&nbsp;@Languages.About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Contact", "Home")">
+                            <i class="glyphicon glyphicon-earphone"></i>&nbsp;@Languages.Contact
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <a href="#" id="btn-user" class="btn-menu login" data-toggle="dropdown">
+                <i class="glyphicon glyphicon-user"></i>
+            </a>
+            <ul class="dropdown-menu pull-right">
+                <li style="border-bottom: solid 2px white;">&nbsp;&nbsp;&nbsp;&nbsp;<strong>@account.Name&nbsp;@account.LastName</strong></li>
+                <li>
+                    <a href="@Url.Action("Edit", "Student", new { modelId = account.Id })">
+                        <i class="glyphicon glyphicon-pencil"></i>&nbsp;@Languages.Profile
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("LogOut", "Account")">
+                        <i class="glyphicon glyphicon-log-out"></i>&nbsp;@Languages.Logout
+                    </a>
+                </li>
+            </ul>
+        }
+    }
+    else
+    {
+        <nav>
+            <ul class="list-unstyled main-menu">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">
+                        <i class="glyphicon glyphicon-home"></i>&nbsp;@Languages.Home
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("About", "Home")">
+                        <i class="glyphicon glyphicon-briefcase"></i>&nbsp;@Languages.About
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Contact", "Home")">
+                        <i class="glyphicon glyphicon-earphone"></i>&nbsp;@Languages.Contact
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <a href="#" id="popover" class="btn-menu login">
+            <i class="glyphicon glyphicon-log-in"></i>
+        </a>
+        <div id="div-popover" class="hide">
+            @using (Html.BeginForm("LogIn", "Account"))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="input-group">
+                    <i class="input-group-addon">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </i>
+                    <input class="form-control" id="Email" name="Email" type="email" placeholder="@Languages.Email">
+                    <input class="form-control" id="Password" name="Password" type="password" placeholder="@Languages.Password">
+                </div>
+                <div id="div-login-bottom" class="input-group">
+                    <button type="submit" class="btn btn-success">@Languages.Login</button>
+                    <a href="@Url.Action("SignUp", "Account")" id="sign-up"><strong>@Languages.SignUp</strong></a>
+                </div>
+            }
+        </div>
+    }
+</header>

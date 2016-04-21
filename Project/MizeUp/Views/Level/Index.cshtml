@@ -1,0 +1,71 @@
+﻿@model IEnumerable<MizeUP.Models.LevelModel>
+
+@{
+    ViewBag.Title = Languages.Level;
+}
+
+<div class="container">
+    <div class="page-header">
+        <h2>
+            <strong>@Languages.Level</strong>
+        </h2>
+    </div>
+    <div>
+        <a href="@Url.Action("Create", "Level")" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i>&nbsp;@Languages.Add&nbsp;@Languages.Level</a>
+    </div><br>
+    @*<a href="#" id="btn-hide-table" data-btn-hide-table><i class="glyphicon glyphicon-chevron-right"></i>&nbsp;@Languages.Show&nbsp;@Languages.Content</a>*@
+    <table class="table table-bordered table-reponsive text-center" data-table>
+        <thead>
+            <tr>
+                <th>@Languages.Name</th>
+                <th>@Languages.EducationalInstitution</th>
+                <th>Nível</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var level in Model)
+                {
+                    <tr>
+                        <td class="vertical-align-middle">@level.Name</td>
+                        <td class="vertical-align-middle">@level.Institution.Name</td>
+                        <td class="vertical-align-middle" width="30%">
+                            <a href='@Url.Action("Edit", "Level", new { modelId = level.Id })' class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
+                            <a href="#" class="btn btn-danger" data-modal-delete="@level.Id"><i class="glyphicon glyphicon-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<form id="content" hidden action="@Url.Action("Delete","Level")" method="POST">
+    <input type="hidden" id="modelId" name="modelId" />
+    <button class="btn btn-danger">@Languages.Delete</button>
+</form>
+
+@section Scripts {
+    <script>
+        var language = {
+            hide: '@Languages.Hide',
+            show: '@Languages.Show',
+            content: '@Languages.Content',
+
+            title: '@Languages.ConfirmOperation',
+            textBtnNot: '@Languages.Delete',
+            url: '@Url.Action("Delete","Level")'
+        }
+    </script>
+    <script type="text/javascript" src="~/Scripts/toggleTable.js"></script>
+    <script type="text/javascript" src="~/Scripts/modalDelete.js"></script>
+}

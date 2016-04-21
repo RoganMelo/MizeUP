@@ -1,0 +1,33 @@
+﻿@if (TempData["Message"] != null)
+{
+    <div class="box-msg-erro">
+        <div class="alert @Html.Raw(TempData["ClassAlert"].ToString())">
+            <i class="@Html.Raw(TempData["ClassGlyphicon"].ToString())"></i>&nbsp;&nbsp;<b>@TempData["Message"]</b>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+    </div>
+}
+
+<div id="modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content" style="margin-top: 80px">
+            <div class="modal-body" id="body">
+                <h4 id="title" class="modal-title"></h4>
+            </div>
+            <div class="modal-footer" id="footer">
+                <button type="button" id="btn-not" class="btn btn-danger" data-dismiss="modal"></button>
+                <button type="button" id="btn-yes" class="btn btn-primary"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="filter-menu">
+</div>
+
+<div id="filter-load">
+</div>
+
+<div id="icon-load">
+    <img src="@Url.Content("~/Content/img/loadIcon.gif")" alt="Loading" />
+</div>

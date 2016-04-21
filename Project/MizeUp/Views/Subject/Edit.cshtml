@@ -1,0 +1,163 @@
+﻿@model MizeUP.Models.SubjectModel
+
+@{
+    ViewBag.Title = Languages.Subjects;
+}
+
+<div class="container">
+    <div class="page-header">
+        <h2>
+            <strong>@Languages.Subjects&nbsp;-&nbsp;@Languages.Editing</strong>
+        </h2>
+    </div>
+    <div class="form-horizontal">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-4">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @Html.HiddenFor(model => model.Id)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.Name, htmlAttributes: new { autocomplete = "off", @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger col-md-6" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4" data-selected-div="@Model.Status">
+                    @Html.DropDownListFor(model => model.Status, (SelectList)ViewBag.Status, new { @class = "form-control"})
+                </div>
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger col-md-6" })
+            </div>
+            <div id="addHorarios">
+                @foreach (var s in ViewBag.schedules)
+                {
+                    <div id="horario" class="horario">
+                        <hr />
+                        <div class="form-group">
+                            @Html.Label(Languages.Day, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                <select id="dia" name="dia" class="form-control" data-selected="@s.Day">
+                                    <option value="1">Domingo</option>
+                                    <option value="2">Segunda</option>
+                                    <option value="3">Terça</option>
+                                    <option value="4">Quarta</option>
+                                    <option value="5">Quinta</option>
+                                    <option value="6">Sexta</option>
+                                    <option value="7">Sabado</option>
+                                </select>
+                            </div>
+                            <span id="validationMessageDay" class="text-danger" hidden>@Languages.Required</span>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label(Languages.StartTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                <div class="input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+                                    <input type="text" id="horarioInicio" name="horarioInicio" class="form-control" value="@s.StartTime" style="background: none; z-index: 0;" data-format-time readonly />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-time"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <span id="validationMessageStartTime" class="text-danger" hidden>@Languages.Required</span>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label(Languages.EndTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                <div class="input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+                                    <input type="text" id="horarioTermino" name="horarioTermino" class="form-control" value="@s.EndTime" style="background: none; z-index: 0;" data-format-time readonly />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-time"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <span id="validationMessageEndTime" class="text-danger" hidden>@Languages.Required</span>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-4">
+                    <button id="btnAddHorario" type="button" class="btn btn-default" style="z-index: 0;">@Languages.Add&nbsp;@Languages.Schedules</button>
+                    <button id="btnRemoveHorario" type="button" class="btn btn-default" style="z-index: 0;">@Languages.Remove&nbsp;@Languages.Schedules</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-4">
+                    <input type="hidden" id="jsonHorarios" name="jsonHorarios" />
+                    <input type="submit" class="btn btn-success" value="@Languages.Save" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/bootstrap-clockpicker.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.clockpicker').clockpicker();
+
+            var horario = $("#horario");
+            var divAddHorarios = $("#addHorarios");
+            $("#btnAddHorario").click(function () {
+                divAddHorarios.append(horario.clone());
+                $('.clockpicker').clockpicker();
+            });
+
+            $("#btnRemoveHorario").click(function () {
+                var horarios = divAddHorarios.find(".horario");
+                if (horarios.length > 1)
+                    horarios.eq(horarios.length - 1).remove();
+            });
+
+            $('form').submit(function () {
+                var horarios = $(".horario");
+                var arrayjson = new Array();
+
+                horarios.each(function (index, elem) {
+                    var dia = $(elem).find("#dia").val();
+                    var horarioInicio = $(elem).find("#horarioInicio").val();
+                    var horarioTermino = $(elem).find("#horarioTermino").val();
+
+                    arrayjson.push({
+                        Day: dia,
+                        StartTime: horarioInicio,
+                        EndTime: horarioTermino
+                    });
+                });
+
+                var stringJSON = JSON.stringify(arrayjson);
+                $("#jsonHorarios").val(stringJSON);
+            });
+
+
+            var selects = $("[data-selected]");
+            selects.each(function (index, elem) {
+                var value = $(elem).attr("data-selected");
+
+                $(elem).val(value);
+            });
+
+            var times = $("[data-format-time]");
+
+            times.each(function (index, elem) {
+                var value = $(elem).val();
+                $(elem).val(formattime(value));
+            });
+
+            function formattime(str) {
+                return str.substr(11, 5);
+            }
+
+
+            var v = $("[data-selected-div]").attr("data-selected-div");
+            $("#Status").val(v);
+        });
+    </script>
+}

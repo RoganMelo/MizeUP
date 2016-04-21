@@ -1,0 +1,200 @@
+﻿@model IEnumerable<MizeUP.Models.SubjectModel>
+
+@{
+    ViewBag.Title = Languages.Subjects;
+}
+
+<div class="container">
+    <div class="page-header">
+        <h2>
+            <strong>@Languages.Subjects</strong>
+        </h2>
+    </div>
+    <div>
+        <a href="@Url.Action("Create", "Subject")" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i>&nbsp;@Languages.Add&nbsp;@Languages.Subjects</a>
+    </div><br>
+    @*<a href="#" id="btn-hide-table" data-btn-hide-table><i class="glyphicon glyphicon-chevron-right"></i>&nbsp;@Languages.Show&nbsp;@Languages.Content</a>*@
+    <table class="table table-bordered table-reponsive text-center" data-table>
+        <thead>
+            <tr>
+                <th>@Languages.Name</th>
+                <th>@Languages.Status</th>
+                <th>@Languages.Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var subject in Model)
+                {
+                    <tr>
+                        <td class="vertical-align-middle">@subject.Name</td>
+                        <td class="vertical-align-middle">
+                            @switch (subject.Status)
+                            {
+                                case 'A':
+                                    <span>@Languages.Attending</span>
+                                    break;
+                                case 'S':
+                                    <span>@Languages.Suspend</span>
+                                    break;
+                                case 'P':
+                                    <span>@Languages.Pendent</span>
+                                    break;
+                                case 'C':
+                                    <span>@Languages.Completed</span>
+                                    break;
+                            }
+                        </td>
+                        <td width="30%">
+                            <a href="#" class="btn btn-primary" onclick="listTaskModal(@subject.Id),listGradeModal(@subject.Id)"><i class="glyphicon glyphicon-cog"></i></a>
+                            <a href='@Url.Action("Edit","Subject", new { modelId = subject.Id })' class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
+                            <a href="#" class="btn btn-danger" data-modal-delete="@subject.Id"><i class="glyphicon glyphicon-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="modal-details" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="margin-top: 80px">
+            <div class="modal-body">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab-details">@Languages.Details</a></li>
+                    <li><a href="#tab-task">@Languages.Task</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="tab-details" class="tab-pane fade in active">
+                        @Html.Partial("~/Views/Subject/_Details.cshtml")
+                    </div>
+
+                    <div id="tab-task" class="tab-pane fade">
+                        @Html.Partial("~/Views/Task/_Task.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form id="content" hidden action="@Url.Action("Delete","Subject")" method="POST">
+    <input type="hidden" id="modelId" name="modelId" />
+    <button class="btn btn-danger">@Languages.Delete</button>
+</form>
+
+@section Scripts {
+    <script>
+    var language = {
+        hide: '@Languages.Hide',
+        show: '@Languages.Show',
+        content: '@Languages.Content',
+
+        title: '@Languages.ConfirmOperation',
+        textBtnNot: '@Languages.Delete',
+        url: '@Url.Action("Delete","Subject")'
+    }
+
+    $(".nav-tabs a").click(function () {
+        $(this).tab('show');
+    });
+
+    function listTaskModal(id) {
+        var url = '@Url.Action("ListTaskModal" , "Task")';
+        var listTask = $('#listTask');
+        listTask.find("tbody").empty();
+
+        $.ajax({
+            dataType: "json",
+            type: "GET",
+            url: url,
+            data: { id: id },
+            success: function (response) {
+                $(response).each(function (i, elem) {
+                    if (elem.Grade == 0) {
+                        elem.Grade = "-";
+                    }
+                    if (elem.Status == 1) {
+                        elem.Status = '@Languages.ToDo';
+                    } else if (elem.Status == 2) {
+                        elem.Status = '@Languages.Doing';
+                    } else {
+                        elem.Status = '@Languages.Completed';
+                    }
+                    var tr = Tr([elem.Name, elem.Status, elem.DeadLine, elem.Grade]);
+                    listTask.append(tr);
+                });
+
+                btnDetalhesClick(id);
+            }
+        });
+
+    }
+
+    function Tr(trs) {
+        var tr = $('<tr />');
+        for (var i = 0; i < trs.length; i++)
+            tr.append($('<td />').html(trs[i]));
+        return tr;
+    }
+
+    var btnDetalhesClick = function (id) {
+        var url = '@Url.Action("Details", "Subject")';
+        var table = $("[data-modal-details]");
+        var tbody = table.find("[data-tbody]");
+
+        $.ajax({
+            url: url,
+            method: "GET",
+            data: { id: id },
+            success: function (response) {
+                tbody.empty();
+                $(response).each(function (index, elem) {
+                    switch (elem.Day) {
+                        case '1':
+                            elem.Day = '@Languages.Sunday'
+                            break;
+                        case '2':
+                            elem.Day = '@Languages.Monday'
+                            break;
+                        case '3':
+                            elem.Day = '@Languages.Tuesday'
+                            break;
+                        case '4':
+                            elem.Day = '@Languages.Wednesday'
+                            break;
+                        case '5':
+                            elem.Day = '@Languages.Thursday'
+                            break;
+                        case '6':
+                            elem.Day = '@Languages.Friday'
+                            break;
+                        case '7':
+                            elem.Day = '@Languages.Saturday'
+                            break;
+                    }
+                    tbody.append(Tr([elem.Day, elem.StartTime, elem.EndTime]));
+                });
+
+                $('#modal-details').modal();
+            },
+            error: function () {
+
+            }
+        });
+    };
+
+</script>
+    <script type="text/javascript" src="~/Scripts/toggleTable.js"></script>
+    <script type="text/javascript" src="~/Scripts/modalDelete.js"></script>
+}

@@ -1,0 +1,59 @@
+﻿@model MizeUP.Models.LevelModel
+
+@{
+    ViewBag.Title = Languages.Level;
+}
+
+<div class="container">
+    <div class="page-header">
+        <h2>
+            <strong>@Languages.Level&nbsp;-&nbsp;@Languages.Registration</strong>
+        </h2>
+    </div>
+    <div class="form-horizontal">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-4">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @Html.HiddenFor(model => model.Id)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Institution, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model.Institution, (SelectList)ViewBag.Institutions, htmlAttributes: new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(model => model.Institution, "", new { @class = "text-danger col-md-6" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.Name, htmlAttributes: new { autocomplete = "off", @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger col-md-6" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.LevelType, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model.LevelType, (SelectList)ViewBag.LevelTypes, htmlAttributes: new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(model => model.LevelType, "", new { @class = "text-danger col-md-6" })
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-4">
+                    <button type="submit" class="btn btn-success">@Languages.Save</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $('#Institution').val('@Model.Institution.Id');
+
+        $('#LevelType').val('@Model.LevelType');
+    </script>
+}

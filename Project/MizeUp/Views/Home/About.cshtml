@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = Languages.About;
+}
+
+
+<div class="container">
+    <div class="col-sm-12">
+        <div class="page-header">
+            <h2 class="text-left">
+                <strong>@Languages.About</strong>
+            </h2>
+        </div>
+    </div>
+    <div class="col-md-offset-1 col-md-10">
+        <div class="row col-sm-3">
+            <div>
+                <img class="img-circle" src="@Url.Content("~/Content/img/quemsomos.png")" alt="MizeUP" height="200">
+            </div>
+        </div>
+        <div class="row col-sm-8">
+            <h3 class="text-left">
+                MizeUP&nbsp;-&nbsp;@Languages.Slogan
+            </h3>
+            <p class="text-justify">
+                @Languages.MessageAbout
+            </p>
+        </div>
+    </div>
+</div>

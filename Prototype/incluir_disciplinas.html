@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>MizeUP</title>
+    <link href="img/favicon.ico" rel=" shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/Site.css" />
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/Site.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a id="btnMenu" class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" style="float: left; padding: 10.5px 20px"><i style="font-size: 25px;" class="glyphicon glyphicon-menu-hamburger"></i></a>
+                    <a href="home_logado.html" id="logo"><img style="height: 50px; padding-left: 6.875%; padding-right: 6.875%;" alt="MizeUP" src="img/logo.png"></a>
+                    <a href="#" class="navbar-toggle" id="popoverMobile" style="padding: 10.5px 20px"><i style="font-size: 25px;" class="glyphicon glyphicon-user"></i></a>
+                    <div id="divPopoverMobile" class="hide">
+                        <ul class="nav navbar-nav" style="width: 150px;">
+                            <li class="disabled"><a href="#" style="color: white;">Clenilton Loiola</a></li>
+                            <li><a href="perfil_de_usuario.html"><i class="glyphicon glyphicon-pencil"></i> Alterar perfil</a></li>
+                            <li><a href="home_inicio.html"><i class="glyphicon glyphicon-log-out"></i> Sair</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="mostrar_disciplinas.html">
+                                <i class="glyphicon glyphicon-book"></i> Disciplinas
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mostrar_grade_de_horarios.html">
+                                <i class="glyphicon glyphicon-calendar"></i> Grade de Horários
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Plano de Estudos <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="mostrar_plano_de_estudos.html">
+                                        <i class="glyphicon glyphicon-stats"></i> Mostrar Plano de Estudos
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mostrar_atividades.html">
+                                        <i class="glyphicon glyphicon-pushpin"></i> Atividades
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mostrar_notas.html">
+                                        <i class="glyphicon glyphicon-ok"></i> Notas
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right" id="divLogin">
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="popoverMobile"><i class="glyphicon glyphicon-user"></i> Clenilton Loiola <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="perfil_de_usuario.html">
+                                        <i class="glyphicon glyphicon-pencil"></i> Alterar perfil
+                                    </a>
+                                </li>
+                                <li><a href="home_inicio.html"><i class="glyphicon glyphicon-log-out"></i> Sair</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="page-header">
+                <h2>
+                    <strong>Cadastro de Disciplina</strong>
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <div>
+                        <div class="row">
+                            <div class="col-sm-12"><label for="nome" class="control-label">Nome:</label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="nome" name="nome">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-12"><label class="control-label">Status:</label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <select class="form-control">
+                                    <option selected>Selecione o status</option>
+                                    <option>Cursando</option>
+                                    <option>Trancada</option>
+                                    <option>Pendente</option>
+                                    <option>Concluida</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-12"><label class="control-label">Dificuldade:</label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <select class="form-control">
+                                    <option selected>Selecione a dificuldade</option>
+                                    <option>Fácil</option>
+                                    <option>Média</option>
+                                    <option>Difícil</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label>Hora Início:</label>
+                                <input type="text" class="form-control" placeholder="00:00" maxlength="5">
+                            </div>
+                            <div class="col-sm-4">
+                                <label>Hora Término:</label>
+                                <input type="text" class="form-control" placeholder="00:00" maxlength="5">
+                            </div>
+                            <div class="col-sm-4">
+                                <label>Dia:</label>
+                                <select class="form-control">
+                                    <option>Selcione o dia</option>
+                                    <option>Domingo</option>
+                                    <option>Segunda</option>
+                                    <option>Terça</option>
+                                    <option>Quarta</option>
+                                    <option>Quinta</option>
+                                    <option>Sexta</option>
+                                    <option>Sabado</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="divAddNovoHorario"></div>
+                        <div class="row">
+                            <div class="col-sm-12 btn-group" role="group" aria-label="...">
+                                <button type="button" id="btnAddNovoHorario" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i> Adicionar</button>
+                                <button type="button" id="btnRemoveNovoHorario" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i> Remover</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> Salvar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="footer">
+        <div>
+            &copy; 2015 <a href="index.html">MizeUP</a>
+        </div>
+    </div>
+
+    <div id="filtroEscuro">
+    </div>
+
+    <div id="dvProgress">
+        <img src="img/ampulheta.gif" width="100" alt="Processing" />
+    </div>
+</body>
+</html>

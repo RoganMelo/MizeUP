@@ -1,0 +1,329 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>MizeUP</title>
+    <link href="img/favicon.ico" rel=" shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/Site.css" />
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/Site.js"></script>
+    <style>
+        section {
+            padding-top: 50px;
+            padding-bottom: 140px;
+        }
+
+        #quem-somos {
+            padding-bottom: 25%;
+        }
+
+        #cadastro {
+            padding-bottom: 20%;
+            background-color: #3F3F3B;
+            color: #fff;
+        }
+
+        #equipe {
+            padding-bottom: 0px;
+            background-color: #3F3F3B;
+            color: #fff;
+        }
+
+        main {
+            margin-bottom: 0px;
+        }
+
+        #footer {
+            position: inherit;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <a href="#"><i style="font-size: 25px;" class="glyphicon glyphicon-menu-hamburger"></i></a>
+                    </div>
+
+                    <h1 style="margin-top: 0px; font-size: 25px" class="text-center col-md-4 col-sm-4 col-xs-4">
+                        <a href="home_inicio.html">MizeUP</a>
+                    </h1>
+
+                    <div class="pull-right">
+                        <a href="#"><i style="font-size: 25px; margin-right: 15px" class="glyphicon glyphicon-log-in"></i></a>
+                    </div>
+                </div>
+
+                <div id="divPopoverMobile" class="hide">
+                    <form role="form">
+                        <div class="input-group" style="width: 230px">
+                            <i class="input-group-addon"><i class="glyphicon glyphicon-user"></i></i>
+                            <input class="form-control" type="email" placeholder="E-mail" />
+                            <input class="form-control" type="password" placeholder="Senha" />
+                        </div>
+                        <div class="input-group">
+                            <button id="btnEntrar" type="submit" class="btn btn-primary">Entrar</button>
+                            <a href="#" style="color: #fff; margin-left: 50px; "><strong>Cadastre-se</strong></a>
+                        </div>
+                    </form>
+                </div>
+                <!--
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a class="page-scroll" href="#quem-somos">
+                                <i class="glyphicon glyphicon-briefcase"></i> Quem somos
+                            </a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#contato">
+                                <i class="glyphicon glyphicon-earphone"></i> Contato
+                            </a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#equipe">
+                                <i class="glyphicon glyphicon-th"></i> Equipe
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" id="divLogin">
+                        <li>
+                            <a href="#cadastro"><i class="glyphicon glyphicon-user"></i> Cadastre-se</a>
+                        </li>
+                        <li>
+                            <a href="#" id="popover">
+                                <i class="glyphicon glyphicon-log-in"></i> Login
+                            </a>
+                        </li>
+                    </ul>
+                    <div id="divPopover" class="hide">
+                        <form class="form-inline" style="width: 250px;">
+                            <div class="input-group">
+                                <i class="input-group-addon"><i class="glyphicon glyphicon-user"></i></i><input class="form-control" type="email" placeholder="E-mail" />
+                                <input class="form-control" type="password" placeholder="Senha" />
+                            </div>
+                            <div>
+                                <a href="home_logado.html" id="btnEntrar" class="btn btn-primary">Entrar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>-->
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <!--<div id="carousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img src="img/ver2.jpg" class="fullscreen" />
+                        </div>
+                        <div class="item">
+                            <img src="img/ver1.jpg" class="fullscreen" />
+                        </div>-->
+                <div class="item active">
+                    <img src="img/MizeUPbanner.jpg" class="fullscreen" />
+                </div>
+                <!--</div>
+                    <a href="#carousel" data-slide="prev" class="left carousel-control">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a href="#carousel" data-slide="next" class="right carousel-control">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>-->
+            </div>
+        </div>
+
+        <div class="container-fluid text-center ">
+            <div class="row">
+                <section id="quem-somos">
+                    <div class="container">
+                        <div class="col-sm-12">
+                            <div class="page-header">
+                                <h2 class="text-center">
+                                    <strong>Quem somos</strong>
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="row col-sm-4" id="text-quem-somos">
+                            <div>
+                                <img class="img-circle" src="img/quemsomos.png" alt="Contato" height="200">
+                            </div>
+                        </div>
+                        <div class="row col-sm-8" id="text-quem-somos">
+                            <h3 class="text-left">MizeUP - Tecnologia em gestão de estudos</h3>
+                            <p class="text-justify">
+                                MizeUp é uma iniciativa de um seleto grupo de alunos da Faculdade Lourenço Filho que visa a criação de uma ferramenta para gerenciar estudos, ou seja, gerenciar tempo, dificuldades, matérias e uma série de outras coisas que dificultam o aprendizado de um estudante.
+                                A ferramenta tem como foco organizar os estudos, de uma forma que se o usuário seguir fielmente o rendimento se manterá sempre alto. E por fim o usuário é premiado com pontos de acordo com seu desempenho, que posteriormente poderão ser utilizados para trocar por produtos em uma loja virtual.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="cadastro">
+                    <div class="container">
+                        <div class="col-md-12">
+                            <div class="page-header">
+                                <h2 class="text-center">
+                                    <strong>Cadastre-se</strong>
+                                </h2>
+                            </div>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </div>
+                        <div class="col-md-6 col-md-offset-3 text-left">
+                            <form role="form">
+                                <div class="form-group">
+                                    <label for="nome"><strong>Nome:</strong></label>
+                                    <input type="text" class="form-control" id="nome">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email"><strong>Email:</strong></label>
+                                    <input type="email" class="form-control" id="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pwd"><strong>Senha:</strong></label>
+                                    <input type="password" class="form-control" id="pwd">
+                                </div>
+                                <div>
+                                    <button type="submit" class="btn btn-primary">Enviar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="contato">
+                    <div class="container">
+                        <div class="row">
+                            <div class="page-header">
+                                <h2 class="text-center">
+                                    <strong>Contato</strong>
+                                </h2>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="img/contato.png" alt="Contato" height="140" width="140">
+                                <h2>Fale conosco</h2>
+                                <p>
+                                    Nossa equipe de atendimento está a sua disposição para tirar quaisquer duvidas ou prestar suporte.
+                                </p>
+                            </div>
+                            <div class="col-md-6 text-left">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label>Nome:</label>
+                                        <input class="form-control" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email:</label>
+                                        <input class="form-control" type="email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Mensagem:</label>
+                                        <textarea class="form-control" style="height: 150px;"></textarea>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="btn btn-primary">Enviar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="equipe" class="col-xs-12">
+                    <div class="col-md-12">
+                        <div class="page-header">
+                            <h2 class="text-center">
+                                <strong>Equipe</strong>
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="row text-center ">
+                        <div class="col-md-4">
+                            <div class="team">
+                                <img class="img-circle" alt="Responsive Image" src="img/img1.jpg" height="150">
+                            </div>
+                            <div>
+                                <h4><strong>Rádrick Gomes</strong></h4>
+                                <p class="text-muted">Product owner / Desenvolvedor</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="team">
+                                <img class="img-circle" alt="Responsive Image" src="img/img2.jpg" height="150">
+                            </div>
+                            <div>
+                                <h4><strong>Rogan Melo</strong></h4>
+                                <p class="text-muted">Scrum master / Desenvolvedor</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="team">
+                                <img class="img-circle" alt="Responsive Image" src="img/img3.jpg" height="150">
+                                <h4><strong>Hileo Anderson</strong></h4>
+                                <p class="text-muted">Team Scrum / Desenvolvedor</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <div class="team">
+                                <img class="img-circle" alt="Responsive Image" src="img/img4.jpg" height="150">
+                            </div>
+                            <div>
+                                <h4><strong>Clenilto Loiola</strong></h4>
+                                <p class="text-muted">Team Scrum / Design</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="team">
+                                <img class="img-circle" alt="Responsive Image" src="img/img5.jpg" height="150">
+                            </div>
+                            <div>
+                                <h4><strong>João Paulo</strong></h4>
+                                <p class="text-muted">Team Scrum / Design</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="team">
+                                <img class="img-circle" alt="Responsive Image" src="img/img6.jpg" height="150">
+                            </div>
+                            <div>
+                                <h4><strong>Marcelo Alves</strong></h4>
+                                <p class="text-muted">Team Scrum / Stakeholder</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <div id="footer" class="footer">
+        <div>
+            &copy; 2015 <a href="index.html">MizeUP</a>
+        </div>
+    </div>
+
+    <div id="filtroEscuro">
+    </div>
+
+    <div id="dvProgress">
+        <img src="img/ampulheta.gif" width="100" alt="Processing" />
+    </div>
+</body>
+</html>

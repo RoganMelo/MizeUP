@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MizeUP.Models.InstitutionModel>
+
+@{
+    ViewBag.Title = Languages.EducationalInstitution;
+}
+
+<div class="container">
+    <div class="page-header">
+        <h2>
+            <strong>@Languages.EducationalInstitution</strong>
+        </h2>
+    </div>
+    <div>
+        <a href="@Url.Action("Create", "Institution")" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i>&nbsp;@Languages.Add&nbsp;@Languages.EducationalInstitution</a>
+    </div><br>
+    @*<a href="#" id="btn-hide-table" data-btn-hide-table><i class="glyphicon glyphicon-chevron-right"></i>&nbsp;@Languages.Show&nbsp;@Languages.Content</a>*@
+    <table class="table table-bordered table-reponsive text-center" data-table>
+        <thead>
+            <tr>
+                <th>@Languages.Name</th>
+                <th>@Languages.Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var institution in Model)
+            {
+                <tr>
+                    <td class="vertical-align-middle">@institution.Name</td>
+                    <td class="vertical-align-middle">
+                        <a href='@Url.Action("Edit", "Institution", new { id = institution.Id })' class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
+                        <a href="#" class="btn btn-danger" data-modal-delete="@institution.Id"><i class="glyphicon glyphicon-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<form id="content" hidden action="@Url.Action("Delete", "Institution")" method="POST">
+    <input type="hidden" id="modelId" name="modelId" />
+    <button class="btn btn-danger">Excluir</button>
+</form>
+
+@section Scripts{
+    <script>
+        var language = {
+            hide: '@Languages.Hide',
+            show: '@Languages.Show',
+            content: '@Languages.Content',
+
+            title: '@Languages.ConfirmOperation',
+            textBtnNot: '@Languages.Delete',
+            url: '@Url.Action("Delete", "Institution")'
+        }
+    </script>
+    <script type="text/javascript" src="~/Scripts/toggleTable.js"></script>
+    <script type="text/javascript" src="~/Scripts/modalDelete.js"></script>
+}

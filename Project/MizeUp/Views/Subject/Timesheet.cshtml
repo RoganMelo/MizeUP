@@ -1,0 +1,77 @@
+﻿@model IEnumerable<MizeUP.Models.SubjectModel>
+
+@{
+    ViewBag.Title = Languages.Timesheet;
+}
+
+<div class="container">
+    <div class="page-header">
+        <h2>
+            <strong>@Languages.Timesheet</strong>
+        </h2>
+    </div>
+    <div>
+        <a href="@Url.Action("Create", "Subject")" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i>&nbsp;@Languages.Add&nbsp;@Languages.Subjects</a>
+    </div><br>
+    @*<a href="#" id="btn-hide-table" data-btn-hide-table><i class="glyphicon glyphicon-chevron-right"></i>&nbsp;@Languages.Show&nbsp;@Languages.Content</a>*@
+    <table class="table table-bordered table-reponsive text-center" data-table>
+        <thead>
+            <tr>
+                <th>@Languages.Schedules/@Languages.Days</th>
+                <th>@Languages.Sunday</th>
+                <th>@Languages.Monday</th>
+                <th>@Languages.Tuesday</th>
+                <th>@Languages.Wednesday</th>
+                <th>@Languages.Thursday</th>
+                <th>@Languages.Friday</th>
+                <th>@Languages.Saturday</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.primeiraColuna != null)
+            {
+                for (int j = 0; j < ViewBag.primeiraColuna.Count; j++)
+                {
+                    <tr>
+                        <th>@ViewBag.primeiraColuna[j]</th>
+                        @for (int i = 0; i < 7; i++)
+                        {
+                            if (ViewBag.viewBagMatriz[j, i] == "-")
+                            {
+                                <td>-</td>
+                            }
+                            else
+                            {
+                                <td>@ViewBag.viewBagMatriz[j, i]</td>
+                            }
+                        }
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <th>-- : --</th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts{
+    <script>
+        var language = {
+            hide: '@Languages.Hide',
+            show: '@Languages.Show',
+            content: '@Languages.Content',
+        }
+    </script>
+    <script type="text/javascript" src="~/Scripts/toggleTable.js"></script>
+}
